@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "549651998968",
-    "project_id": "m1-apk-andao",
-    "storage_bucket": "m1-apk-andao.appspot.com"
+    "project_number": "950024980632",
+    "project_id": "nicksoa-apk-m1-bac13",
+    "storage_bucket": "nicksoa-apk-m1-bac13.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:549651998968:android:43aed37e19f0db002ab30d",
+        "mobilesdk_app_id": "1:950024980632:android:843671ab4c6d6ee0f5a8ed",
         "android_client_info": {
-          "package_name": "com.example.andao_apk"
+          "package_name": "com.example.andao"
         }
       },
       "oauth_client": [
         {
-          "client_id": "549651998968-oqhuvr7t4g1u2f9eukaaah3siji6u9u6.apps.googleusercontent.com",
+          "client_id": "950024980632-etqfgbjs0cmav5o2fctjj4qeet5vk06q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCO5pq7W3McSp7PBZlEiEkQgbURqVO9Z3k"
+          "current_key": "AIzaSyCQHVBFxh5v8YRohTwHJxC7H9cHKQVUBi8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "549651998968-oqhuvr7t4g1u2f9eukaaah3siji6u9u6.apps.googleusercontent.com",
+              "client_id": "950024980632-etqfgbjs0cmav5o2fctjj4qeet5vk06q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
