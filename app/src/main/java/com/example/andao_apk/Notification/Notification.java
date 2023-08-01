@@ -1,4 +1,4 @@
-package com.example.andao.Notification;
+package com.example.andao_apk.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,11 +8,12 @@ import android.net.Uri;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import com.example.andao.MainActivity;
-import com.example.andao.R;
+import com.example.andao_apk.MainActivity;
+import com.example.andao_apk.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-public class NotificationService extends FirebaseMessagingService{
+
+public class Notification extends FirebaseMessagingService{
 
     @Override
     public void onNewToken(@NonNull String token) {
@@ -42,5 +43,6 @@ public class NotificationService extends FirebaseMessagingService{
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notificationBuilder.build());
     }
-}
 
+
+}
