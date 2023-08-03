@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_clear">#B480EE</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
@@ -9,4 +10,20 @@
     <color name="white">#FFFFFFFF</color>
     <color name="title_notification">#2D6639</color>
     <color name="libellelien_multimedia">#7E1147</color>
+    <color name="yellow">#F3FA58</color>
+    <color name="green_100">#234A41</color>
+    <color name="aqua_marine">#84fff2</color>
+    <color name="trending_start">#0096A0</color>
+    <color name="trending_end">#66877D</color>
+    <color name="blue_clear_700">#CFE9F6</color>
+    <color name="blue_clear_600">#B3D7EF</color>
+    <color name="blue_clear_400">#6ABCE3</color>
+    <color name="blue_black_400">#134D68</color>
+    <color name="blue_black_700">#0B2C3C</color>
+    <color name="blue">#0B2C3C</color>
+    <color name="blue_real">#5C9FED</color>
+    <color name="blue_100">#96D6FC</color>
+    <color name="blue_500">#308FF9</color>
+    <color name="grey">#D6DADD</color>
+
 </resources>
