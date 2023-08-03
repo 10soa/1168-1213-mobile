@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.andao_apk.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,7 +39,9 @@ public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.Mu
     @Override
     public void onBindViewHolder(@NonNull MultimediaViewHolder holder,int position) {
         holder.textView.setText(list.get(position).getLien());
-        holder.image.setImageResource(list.get(position).getImage());
+        String imageHttp=list.get(position).getImage();
+        Picasso.get().load(imageHttp).into(holder.image);
+        //holder.image.setImageResource();
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

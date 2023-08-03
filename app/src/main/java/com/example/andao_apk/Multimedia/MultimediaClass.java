@@ -4,19 +4,19 @@ public class MultimediaClass {
 
     private String lien;
     private String id;
-    private int image;
+    private String image;
 
     public MultimediaClass(){
 
     }
 
-    public MultimediaClass(String lien, String id, int image) {
+    public MultimediaClass(String lien, String id, String image) {
         this.lien = lien;
         this.id = id;
         this.image = image;
     }
 
-    public MultimediaClass(String lien, int image) {
+    public MultimediaClass(String lien, String image) {
         this.lien = lien;
         this.image = image;
     }
@@ -37,11 +37,11 @@ public class MultimediaClass {
         this.id = id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

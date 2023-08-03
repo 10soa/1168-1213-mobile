@@ -15,7 +15,9 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="80dp"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
+            android:scaleX="5"
+            android:scaleY="5"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/baseline_notification_add_24" />
 

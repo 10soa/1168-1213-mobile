@@ -84,32 +84,26 @@ public class MultimediaFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         recyclerView.setAdapter(adapter);
     }
-
     private void datainitialise() {
         list=new ArrayList<>();
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photo));
-        list.add(new MultimediaClass("https//vidyVarotra.mg",R.drawable.photos2jpg));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
+        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
+
+
     }
 }

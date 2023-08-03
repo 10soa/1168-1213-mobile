@@ -6,6 +6,7 @@
     android:layout_width="110dp"
     android:layout_height="200dp"
     android:layout_margin="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
     <LinearLayout
@@ -13,21 +14,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image_multimedia"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:background="@color/black"/>
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_multimedia"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop"
+                android:background="@color/black"/>
+        </LinearLayout>
 
-        <TextView
-            android:textColor="#2d2d2d"
-            android:id="@+id/lien_multimedia"
-            android:gravity="center"
-            android:textSize="13sp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Https//vidyVarotra.mg"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon_image_multimedia"
+                android:layout_width="30dp"
+                android:scaleType="center"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/icon_mutlimedia" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:textColor="@color/libellelien_multimedia"
+                    android:id="@+id/lien_multimedia"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textStyle="italic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Https//vidyVarotra.mg"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
