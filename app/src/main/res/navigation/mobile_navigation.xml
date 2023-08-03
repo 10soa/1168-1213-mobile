@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.andao_apk.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_multimedia"
+        android:name="com.example.andao_apk.Multimedia.MultimediaFragment"
         android:label="multimedia"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_multimedia" />
 
     <fragment
         android:id="@+id/navigation_settings"
@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.andao_apk.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_notification"
+        android:name="com.example.andao_apk.Notification_android.NotificationFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/navigation_partage"

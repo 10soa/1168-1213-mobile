@@ -12,14 +12,14 @@
         android:title="Partage" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_multimedia"
         android:icon="@drawable/baseline_image_24"
         android:title="Multimedia" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_notification"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="Notification" />
 
     <item
         android:id="@+id/navigation_settings"
