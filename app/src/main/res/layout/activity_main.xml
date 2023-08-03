@@ -10,7 +10,7 @@
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:elevation="2dp"
         android:background="@drawable/bg_rounded"

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.andao_apk.ui.home.HomeFragment"
-        android:label="accueil"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.andao_apk.Categorie.CategorieFragment"
+        android:label="Andao"
+        tools:layout="@layout/fragment_categorie" />
 
     <fragment
         android:id="@+id/navigation_multimedia"
