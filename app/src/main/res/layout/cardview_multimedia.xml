@@ -34,7 +34,7 @@
             <ImageView
                 android:id="@+id/icon_image_multimedia"
                 android:layout_width="30dp"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/icon_mutlimedia" />
 

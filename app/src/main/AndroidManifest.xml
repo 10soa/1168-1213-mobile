@@ -27,12 +27,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
+        <activity
+            android:name=".Multimedia.MultimediaFiche"
+            android:theme="@style/App.popImageMultimedia"></activity>
 
-        <activity android:name=".Multimedia.MultimediaFiche"
-            android:theme="@style/App.popImageMultimedia"
-            >
-        </activity>
+        <activity
+            android:name=".Multimedia.Videos.FullScreen"></activity>
 
         <service
             android:name=".Notification.Notification"
