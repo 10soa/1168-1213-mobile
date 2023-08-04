@@ -113,6 +113,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_weight="0.33"
                                 android:background="@drawable/bg_color"
+                                android:clickable="true"
                                 android:elevation="5dp"
                                 android:orientation="vertical">
 
@@ -156,6 +157,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_weight="0.33"
                                 android:background="@drawable/bg_color"
+                                android:clickable="true"
                                 android:elevation="5dp"
                                 android:orientation="vertical">
 
