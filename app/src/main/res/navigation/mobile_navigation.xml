@@ -11,17 +11,17 @@
         android:label="Andao"
         tools:layout="@layout/fragment_categorie" />
 
-    <fragment
+    <activity
         android:id="@+id/navigation_multimedia"
-        android:name="com.example.andao_apk.Multimedia.MultimediaFragment"
-        android:label="multimedia"
-        tools:layout="@layout/fragment_multimedia" />
+        android:name="com.example.andao_apk.Multimedia.Onglet.OngletActivity"
+        android:label="Multimédias"
+        tools:layout="@layout/activity_onglet" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.andao_apk.ui.dashboard.DashboardFragment"
+        android:name="com.example.andao_apk.ui.home.HomeFragment"
         android:label="reglages"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notification"

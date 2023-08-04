@@ -35,6 +35,9 @@
         <activity
             android:name=".Multimedia.Videos.FullScreen"></activity>
 
+        <activity
+            android:name=".Multimedia.Onglet.OngletActivity"></activity>
+
         <service
             android:name=".Notification.Notification"
             android:exported="false">
