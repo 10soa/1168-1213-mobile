@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_partage"
-        android:name="com.example.andao_apk.Article.ArticleListeFragment"
+        android:name="com.example.andao_apk.Partage.PartageListeFragment"
         android:label="partage"
-        tools:layout="@layout/fragment_article_liste" />
+        tools:layout="@layout/fragment_partage_liste" />
 </navigation>
