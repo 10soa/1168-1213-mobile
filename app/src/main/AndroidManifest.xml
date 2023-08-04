@@ -15,6 +15,15 @@
         android:theme="@style/Theme.AndaoAPK"
         tools:targetApi="31">
         <activity
+            android:name=".Utilisateur.ficheUtilisateur"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
@@ -30,10 +39,8 @@
             android:label="@string/app_name" />
         <activity
             android:name=".Multimedia.MultimediaFiche"
-            android:theme="@style/App.popImageMultimedia"></activity>
-
-        <activity
-            android:name=".Multimedia.Videos.FullScreen"></activity>
+            android:theme="@style/App.popImageMultimedia" />
+        <activity android:name=".Multimedia.Videos.FullScreen" />
 
         <service
             android:name=".Notification.Notification"
