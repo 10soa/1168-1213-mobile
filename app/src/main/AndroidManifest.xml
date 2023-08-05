@@ -15,6 +15,12 @@
         android:theme="@style/Theme.AndaoAPK"
         tools:targetApi="31">
         <activity
+            android:name=".LanguesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
@@ -30,13 +36,11 @@
             android:label="@string/app_name" />
         <activity
             android:name=".Multimedia.MultimediaFiche"
-            android:theme="@style/App.popImageMultimedia"></activity>
-
-        <activity
-            android:name=".Multimedia.Videos.FullScreen"></activity>
-
-        <activity
-            android:name=".Multimedia.Onglet.OngletActivity"></activity>
+            android:theme="@style/App.popImageMultimedia" />
+        <activity android:name=".Multimedia.Videos.FullScreen" />
+        <activity android:name=".Multimedia.Onglet.OngletActivity" />
+        <activity android:name=".Reglages.ThemeActivity" />
+        <activity android:name=".Reglages.LanguesActivity" />
 
         <service
             android:name=".Notification.Notification"

@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.andao_apk.ui.home.HomeFragment"
+        android:name="com.example.andao_apk.Reglages.ReglagesFragment"
         android:label="reglages"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_reglages" />
 
     <fragment
         android:id="@+id/navigation_notification"
