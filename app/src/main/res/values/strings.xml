@@ -9,4 +9,6 @@
     <string name="content_notification">Notez que le mode déchelle centerInside ajustera la taille de licône pour quelle tienne à lintérieur de lImageView tout en maintenant son aspect dorigine. Vous pouvez </string>
     <string name="tab2">Tab2</string>
     <string name="favoris">favoris</string>
+    <string name="title_theme">Activation du mode sombre</string>
+    <string name="content_theme">Activation du mode sombre :Choisissez vos préfèrences selon votre goût et et votre style</string>
 </resources>

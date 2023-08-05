@@ -3,12 +3,9 @@ package com.example.andao_apk.Partage;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class PartageClass {
     private String _id;
@@ -158,8 +155,10 @@ public class PartageClass {
 
     public String calculateTimeAgo() {
         Date date = getDatePublication();
-        Instant instant = date.toInstant();
-        long secondsAgo = Duration.between(instant, Instant.now()).getSeconds();
+        long millisecondsAgo = System.currentTimeMillis() - date.getTime();
+
+        // Convertir la différence en millisecondes en secondes
+        long secondsAgo = millisecondsAgo / 1000;
 
         if (secondsAgo < 60) {
             return "il y a " + secondsAgo + "s";
@@ -176,17 +175,23 @@ public class PartageClass {
             long weeksAgo = secondsAgo / 604800;
             return "il y a " + weeksAgo + " semaines";
         } else {
-            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate now = LocalDate.now();
-            Period period = null;
-            period = Period.between(localDate, now);
+            Calendar calendarPublication = new GregorianCalendar();
+            calendarPublication.setTime(date);
 
-            int yearsAgo = period.getYears();
+            Calendar calendarNow = new GregorianCalendar();
+            int yearsAgo = calendarNow.get(Calendar.YEAR) - calendarPublication.get(Calendar.YEAR);
+            int monthsAgo = calendarNow.get(Calendar.MONTH) - calendarPublication.get(Calendar.MONTH);
+
+            if (monthsAgo < 0) {
+                yearsAgo--;
+                monthsAgo += 12;
+            }
+
             if (yearsAgo > 0) {
                 return "il y a " + yearsAgo + " an" + (yearsAgo > 1 ? "s" : "");
             }
 
-            return "il y a " + period.getMonths() + " mois";
+            return "il y a " + monthsAgo + " mois";
         }
     }
 }

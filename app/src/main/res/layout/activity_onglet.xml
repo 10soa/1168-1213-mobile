@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_container"
     tools:context=".Multimedia.Onglet.OngletActivity">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,9 +14,31 @@
         android:layout_height="match_parent"
         tools:context=".Multimedia.Onglet.OngletActivity">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/second_toolbar_multimedia"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Ma Deuxième Toolbar"
+            app:titleTextColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true">
+
+            <ImageView
+                android:id="@+id/retour_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_retour"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="Retour" />
+        </androidx.appcompat.widget.Toolbar>
+
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:id="@+id/tab_layout"
+            android:layout_below="@+id/second_toolbar_multimedia"
             android:layout_height="wrap_content">
 
 

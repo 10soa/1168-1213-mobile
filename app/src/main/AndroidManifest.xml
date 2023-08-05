@@ -42,6 +42,8 @@
             android:theme="@style/App.popImageMultimedia" />
         <activity android:name=".Multimedia.Videos.FullScreen" />
         <activity android:name=".Multimedia.Onglet.OngletActivity" />
+        <activity android:name=".Reglages.ThemeActivity" />
+        <activity android:name=".Reglages.LanguesActivity" />
 
         <service
             android:name=".Notification.Notification"
