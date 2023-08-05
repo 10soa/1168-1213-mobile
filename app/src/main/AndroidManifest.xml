@@ -24,12 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LanguesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ThemeActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
