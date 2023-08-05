@@ -7,6 +7,17 @@
     android:background="#F5F5F5"
     tools:context=".Utilisateur.ficheUtilisateur">
 
+    <ImageView
+        android:id="@+id/retour_profil"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icon_retour_profil"
+        android:contentDescription="Icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:elevation="10dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
