@@ -26,13 +26,16 @@
                 android:clickable="true"
                 android:src="@drawable/baseline_add_24"
                 app:backgroundTint="@color/blue_black_400" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerlistepartage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-25dp"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_marginTop="-25dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 

@@ -15,11 +15,17 @@
         android:theme="@style/Theme.AndaoAPK"
         tools:targetApi="31">
         <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Utilisateur.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".Article.ArticleListeActivity"
             android:exported="false" />
         <activity
             android:name=".Utilisateur.ficheUtilisateur"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Article.ArticleActivity"
             android:exported="false" />
