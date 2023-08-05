@@ -50,10 +50,9 @@ public class ArticleAdapter  extends RecyclerView.Adapter<ArticleAdapter.Article
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(context, MultimediaFiche.class);
-                intent.putExtra("lien",list.get(position).getCategorie());
-                intent.putExtra("image",list.get(position).getLien());
-                context.startActivity(intent);*/
+                System.out.println("Coucou la chere");
+                Intent articleDetails = new Intent(context,ArticleActivity.class);
+                context.startActivity(articleDetails);
             }
         });
     }

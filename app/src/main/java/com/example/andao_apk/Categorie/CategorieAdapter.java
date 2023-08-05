@@ -9,18 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.andao_apk.Article.ArticleActivity;
+import com.example.andao_apk.Article.ArticleClass;
+import com.example.andao_apk.Article.ArticleListeActivity;
+import com.example.andao_apk.Article.ArticleListeFragment;
 import com.example.andao_apk.Multimedia.MultimediaAdapter;
 import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.Multimedia.MultimediaFiche;
 import com.example.andao_apk.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategorieAdapter  extends RecyclerView.Adapter<CategorieAdapter.CategorieViewHolder>{
@@ -54,10 +62,9 @@ public class CategorieAdapter  extends RecyclerView.Adapter<CategorieAdapter.Cat
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, MultimediaFiche.class);
-                intent.putExtra("lien",list.get(position).getCategorie());
-                intent.putExtra("image",list.get(position).getLien());
-                context.startActivity(intent);
+                // Créer une instance du nouveau fragment
+                Intent articleDetails = new Intent(context, ArticleListeActivity.class);
+                context.startActivity(articleDetails);
             }
         });
     }

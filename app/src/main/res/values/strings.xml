@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_notification">Titre de la Notification</string>
     <string name="content_notification">Notez que le mode déchelle centerInside ajustera la taille de licône pour quelle tienne à lintérieur de lImageView tout en maintenant son aspect dorigine. Vous pouvez </string>
+    <string name="tab2">Tab2</string>
+    <string name="favoris">favoris</string>
 </resources>

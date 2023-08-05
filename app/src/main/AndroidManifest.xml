@@ -15,14 +15,14 @@
         android:theme="@style/Theme.AndaoAPK"
         tools:targetApi="31">
         <activity
+            android:name=".Article.ArticleListeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Utilisateur.ficheUtilisateur"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
+        <activity
+            android:name=".Article.ArticleActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true"
@@ -41,9 +41,7 @@
             android:name=".Multimedia.MultimediaFiche"
             android:theme="@style/App.popImageMultimedia" />
         <activity android:name=".Multimedia.Videos.FullScreen" />
-
-        <activity
-            android:name=".Multimedia.Onglet.OngletActivity"></activity>
+        <activity android:name=".Multimedia.Onglet.OngletActivity" />
 
         <service
             android:name=".Notification.Notification"

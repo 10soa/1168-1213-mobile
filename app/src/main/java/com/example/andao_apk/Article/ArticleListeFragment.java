@@ -36,9 +36,12 @@ public class ArticleListeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    List<ArticleClass> list;
+    private List<ArticleClass> list;
 
-    public ArticleListeFragment() {
+    public ArticleListeFragment(){}
+
+    public ArticleListeFragment(List<ArticleClass> list) {
+        this.list = list;
         // Required empty public constructor
     }
 
@@ -79,7 +82,6 @@ public class ArticleListeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        datainitialise();
         RecyclerView recyclerView=view.findViewById(R.id.recyclerlistearticle);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.example.andao_apk.Categorie.CategorieFragment"
         android:label="Andao"
-        tools:layout="@layout/fragment_categorie" />
+        tools:layout="@layout/fragment_categorie" >
+        <action
+            android:id="@+id/action_navigation_home_to_articleListeFragment2"
+            app:destination="@id/articleListeFragment" />
+    </fragment>
 
     <activity
         android:id="@+id/navigation_multimedia"
@@ -34,4 +38,9 @@
         android:name="com.example.andao_apk.Partage.PartageListeFragment"
         android:label="partage"
         tools:layout="@layout/fragment_partage_liste" />
+    <fragment
+        android:id="@+id/articleListeFragment"
+        android:name="com.example.andao_apk.Article.ArticleListeFragment"
+        android:label="fragment_article_liste"
+        tools:layout="@layout/fragment_article_liste" />
 </navigation>
