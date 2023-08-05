@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.example.andao_apk.Article.Onglet.FicheTabArticleAdapter;
 import com.example.andao_apk.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -27,6 +28,9 @@ public class ArticleActivity extends AppCompatActivity {
     private static  boolean ADDED_FAVORIS = false;
     private FloatingActionButton addToFavoris;
 
+    private ViewPager2 articleViewPager;
+    private TabLayout articleViewPagerIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("Salut ny fianakams");
@@ -38,6 +42,8 @@ public class ArticleActivity extends AppCompatActivity {
        articleImagesViewPager =findViewById(R.id.article_images_viewpager);
         viewpagerIndicator = findViewById(R.id.article_tablayout);
         addToFavoris = findViewById(R.id.add_to_favoris);
+       articleViewPager = findViewById(R.id.view_pager_fiche_2);
+       articleViewPagerIndicator = findViewById(R.id.article_tablayout);
         List<String> productImages = new ArrayList<>();
         productImages.add("https://th.bing.com/th?id=OIP.FIprt61j-IpnTzzgRKSieQHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2");
         productImages.add("https://th.bing.com/th/id/R.bade2ed85606117205dbdcdb34cef320?rik=w4pA4dV5r%2bfzQQ&pid=ImgRaw&r=0");
@@ -60,6 +66,31 @@ public class ArticleActivity extends AppCompatActivity {
                     ADDED_FAVORIS = false;
                     addToFavoris.setSupportImageTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
                 }
+            }
+        });
+        articleViewPager.setAdapter(new FicheTabArticleAdapter(this));
+         viewpagerIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                articleViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        articleViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                viewpagerIndicator.getTabAt(position).select();
             }
         });
     }

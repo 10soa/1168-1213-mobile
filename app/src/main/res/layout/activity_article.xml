@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <include layout="@layout/article_images"/>
-            <include layout="@layout/center_article_layout"/>
+           <!-- <include layout="@layout/center_article_layout"/> -->
+            <include layout="@layout/tab_layout_article"/>
  </LinearLayout>
     </ScrollView>
 

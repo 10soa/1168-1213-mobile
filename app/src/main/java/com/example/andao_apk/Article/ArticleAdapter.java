@@ -50,7 +50,6 @@ public class ArticleAdapter  extends RecyclerView.Adapter<ArticleAdapter.Article
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Coucou la chere");
                 Intent articleDetails = new Intent(context,ArticleActivity.class);
                 context.startActivity(articleDetails);
             }
