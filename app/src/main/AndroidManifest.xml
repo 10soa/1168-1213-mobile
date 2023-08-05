@@ -24,6 +24,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LanguesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
@@ -41,9 +47,9 @@
             android:name=".Multimedia.MultimediaFiche"
             android:theme="@style/App.popImageMultimedia" />
         <activity android:name=".Multimedia.Videos.FullScreen" />
-
-        <activity
-            android:name=".Multimedia.Onglet.OngletActivity"></activity>
+        <activity android:name=".Multimedia.Onglet.OngletActivity" />
+        <activity android:name=".Reglages.ThemeActivity" />
+        <activity android:name=".Reglages.LanguesActivity" />
 
         <service
             android:name=".Notification.Notification"
