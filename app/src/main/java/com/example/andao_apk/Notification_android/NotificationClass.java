@@ -1,7 +1,5 @@
 package com.example.andao_apk.Notification_android;
 
-import java.util.Date;
-
 public class NotificationClass {
 
     int image;
@@ -10,12 +8,12 @@ public class NotificationClass {
     String libelle;
     String article_id;
     String description;
-    Date date;
+    String date;
     public NotificationClass(){
 
     }
 
-    public NotificationClass(int image, String id, String libelle, String article_id, String description, Date date) {
+    public NotificationClass(int image, String id, String libelle, String article_id, String description, String date) {
         this.image = image;
         this.id = id;
         this.libelle = libelle;
@@ -64,11 +62,11 @@ public class NotificationClass {
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate(){
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(String date) {
+        this.date = "le : "+date;
     }
 }

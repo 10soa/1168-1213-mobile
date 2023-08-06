@@ -37,6 +37,7 @@ public class NotificationAdapter extends  RecyclerView.Adapter<NotificationAdapt
          holder.imageView.setImageResource(rep.getImage());
          holder.textView1.setText(rep.getLibelle());
          holder.textView2.setText(rep.getDescription());
+        holder.datenotif.setText(rep.getDate().toString());
     }
 
     @Override
@@ -49,11 +50,14 @@ public class NotificationAdapter extends  RecyclerView.Adapter<NotificationAdapt
         TextView textView1;
         TextView textView2;
 
+        TextView datenotif;
+
         public MultimediaViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.imageView);
             textView1=itemView.findViewById(R.id.textcardView1);
             textView2=itemView.findViewById(R.id.textecardView2);
+            datenotif=itemView.findViewById(R.id.datenotif);
         }
     }
 }
