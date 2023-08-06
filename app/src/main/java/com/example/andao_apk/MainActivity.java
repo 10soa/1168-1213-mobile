@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.andao_apk.Article.ArticleListeActivity;
 import com.example.andao_apk.Utilisateur.ficheUtilisateur;
 import com.example.andao_apk.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ImageView profil;
+    private ImageView searchIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         profil=findViewById(R.id.profile_icon);
+        searchIcon = findViewById(R.id.search_icon);
         profil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ficheUtilisateur.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ArticleListeActivity.class);
                 startActivity(intent);
                 finish();
             }

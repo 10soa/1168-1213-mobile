@@ -1,9 +1,15 @@
 package com.example.andao_apk.Categorie;
 
+import com.example.andao_apk.Article.ArticleClass;
+
+import java.util.List;
+
 public class CategorieClass {
     private String lien;
     private String _id;
     private String categorie;
+
+    public List<ArticleClass> articles;
 
     private int image;
 
@@ -54,8 +60,23 @@ public class CategorieClass {
         this.categorie = categorie;
     }
 
-    public CategorieClass(int image, String categorie) {
+    public List<ArticleClass> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<ArticleClass> articles) {
+        this.articles = articles;
+    }
+
+    public CategorieClass(String id,int image, String categorie) {
         this.image = image;
         this.categorie = categorie;
+        this._id = id;
     }
+
+
+    public List<CategorieClass> getCategories(){
+        return null;
+    }
+
 }

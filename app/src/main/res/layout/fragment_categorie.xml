@@ -30,13 +30,13 @@
                     android:text="ANDAO"
                     android:id="@+id/text_accueil"
                     android:textStyle="bold"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     tools:ignore="MissingConstraints"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></TextView>
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:contentDescription="madagascar"
                     android:src="@drawable/madagascar"
                     app:layout_constraintBottom_toBottomOf="@id/text_accueil"
@@ -49,7 +49,7 @@
                     android:paddingVertical="2dp"
                     android:ellipsize="end"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     app:layout_constraintTop_toBottomOf="@id/text_accueil"
                     android:text="Découvrez Madagascar, une île aux mille trésors, à travers nos catégories incontournables : destinations, cultures, traditions, gastronomie et bien plus encore. Plongez dans une aventure authentique et laissez-vous envoûter par la richesse touristique de ce joyau de l'Océan Indien. Embarquez dès maintenant pour une exploration passionnante au cœur de Madagascar ! "
                     ></TextView>

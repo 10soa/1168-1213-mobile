@@ -90,11 +90,11 @@ public class CategorieFragment extends Fragment {
 
     private void datainitialise() {
         list=new ArrayList<>();
-        list.add(new CategorieClass(R.drawable.destination,"Destination incoutournables"));
-        list.add(new CategorieClass(R.drawable.gastronomie,"Gastronomie malgache"));
-        list.add(new CategorieClass(R.drawable.hotel_activite,"Hotels et Activités"));
-        list.add(new CategorieClass(R.drawable.culture,"Cultures et traditions"));
-        list.add(new CategorieClass(R.drawable.festival,"Festivals et événements culturels"));
-        list.add(new CategorieClass(R.drawable.fauneflore,"Faunes et Flore"));
+        list.add(new CategorieClass("64c686179f266a02ec39a9d9",R.drawable.destination,"Destination incoutournables"));
+        list.add(new CategorieClass("64c686179f266a02ec39a9da",R.drawable.gastronomie,"Gastronomie malgache"));
+        list.add(new CategorieClass("64c686179f266a02ec39a9db",R.drawable.hotel_activite,"Hotels et Activités"));
+        list.add(new CategorieClass("64c686179f266a02ec39a9dc",R.drawable.culture,"Cultures et traditions"));
+        list.add(new CategorieClass("64c686179f266a02ec39a9dd",R.drawable.festival,"Festivals et événements culturels"));
+        list.add(new CategorieClass("64c686179f266a02ec39a9de",R.drawable.fauneflore,"Faunes et Flore"));
     }
 }

@@ -64,6 +64,7 @@ public class CategorieAdapter  extends RecyclerView.Adapter<CategorieAdapter.Cat
             public void onClick(View view) {
                 // Créer une instance du nouveau fragment
                 Intent articleDetails = new Intent(context, ArticleListeActivity.class);
+                articleDetails.putExtra("idCat",list.get(position).get_id());
                 context.startActivity(articleDetails);
             }
         });

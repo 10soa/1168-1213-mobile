@@ -1,5 +1,25 @@
 package com.example.andao_apk.Article;
 
+import android.content.Context;
+
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.RequestFuture;
+import com.android.volley.toolbox.Volley;
+import com.example.andao_apk.Constante.Constante;
+import com.example.andao_apk.Multimedia.MultimediaClass;
+import com.example.andao_apk.Multimedia.Videos.VideosClass;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 public class ArticleClass {
     private String _id;
 
@@ -8,7 +28,7 @@ public class ArticleClass {
 
     private int imageCat;
     private String image;
-    private String[] images;
+    private List<MultimediaClass> images;
     private String libelle;
     private String description;
     private double x;
@@ -18,7 +38,19 @@ public class ArticleClass {
     private String autres;
     private String court_description;
     private String mot_cle;
-    private String[] videos;
+    private List<VideosClass> videos;
+
+
+
+    private String imageCategorie;
+
+    public String getImageCategorie() {
+        return imageCategorie;
+    }
+
+    public void setImageCategorie(String imageCategorie) {
+        this.imageCategorie = imageCategorie;
+    }
 
     public int getImageA() {
         return imageA;
@@ -63,14 +95,6 @@ public class ArticleClass {
 
     public void set_id(String _id) {
         this._id = _id;
-    }
-
-    public String[] getImages() {
-        return images;
-    }
-
-    public void setImages(String[] images) {
-        this.images = images;
     }
 
     public String getLibelle() {
@@ -146,12 +170,30 @@ public class ArticleClass {
         this.mot_cle = mot_cle;
     }
 
-    public String[] getVideos() {
-        return videos;
+    public List<MultimediaClass> getImages() {
+        return images;
     }
 
-    public void setVideos(String[] videos) {
+
+    public ArticleClass(String _id, String categorie, String image, List<MultimediaClass> images, String libelle, String description, double x, double y, String localisation, String site, String autres, String court_description, List<VideosClass> videos, int imageCategorie) {
+        this._id = _id;
+        this.categorie = categorie;
+        this.image = image;
+        this.images = images;
+        this.libelle = libelle;
+        this.description = description;
+        this.x = x;
+        this.y = y;
+        this.localisation = localisation;
+        this.site = site;
+        this.autres = autres;
+        this.court_description = court_description;
         this.videos = videos;
+        this.imageCat = imageCategorie;
+    }
+
+    public void setImages(List<MultimediaClass> images) {
+        this.images = images;
     }
 
     public String getImage() {
@@ -161,4 +203,7 @@ public class ArticleClass {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public ArticleClass(){}
+
 }

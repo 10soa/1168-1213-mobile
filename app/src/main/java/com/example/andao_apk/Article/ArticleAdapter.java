@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.andao_apk.Multimedia.MultimediaFiche;
 import com.example.andao_apk.R;
 import androidx.annotation.NonNull;
@@ -40,12 +42,11 @@ public class ArticleAdapter  extends RecyclerView.Adapter<ArticleAdapter.Article
         holder.libelle.setText(list.get(position).getLibelle());
         holder.description.setText(list.get(position).getCourt_description() == null ? list.get(position).getDescription() : list.get(position).getCourt_description());
         holder.categorie.setText(list.get(position).getCategorie());
-        holder.imageCategorie.setImageResource(list.get(position).getImageCat());
-        holder.image.setImageResource(list.get(position).getImageA());
-       /* Glide.with(context)
+        Glide.with(context)
                 .load(list.get(position).getImage())
-                .apply(new RequestOptions().placeholder(R.drawable.photo)) // Image de remplacement en cas de chargement ou d'erreur
-                .into(holder.image);*/
+                .apply(new RequestOptions().placeholder(list.get(position).getImageCat())) // Image de remplacement en cas de chargement ou d'erreur
+                .into(holder.image);
+        holder.imageCategorie.setImageResource(list.get(position).getImageCat());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
