@@ -25,7 +25,7 @@ public class FicheTabArticleAdapter extends FragmentStateAdapter {
             case 0 :
                 return new DescriptionArticleFragment(articleClass.getSite(),articleClass.getDescription(),articleClass.getLocalisation());
             case 1 :
-                return new VideosFragment();
+                return new VideosFragment(articleClass.getVideos());
             default:
                 return new DescriptionArticleFragment(articleClass.getSite(),articleClass.getDescription(),articleClass.getLocalisation());
         }

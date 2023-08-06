@@ -24,7 +24,13 @@ public class ArticleClass{
     private String mot_cle;
     private List<VideosClass> videos;
 
+    public List<VideosClass> getVideos() {
+        return videos;
+    }
 
+    public void setVideos(List<VideosClass> videos) {
+        this.videos = videos;
+    }
 
     private String imageCategorie;
 

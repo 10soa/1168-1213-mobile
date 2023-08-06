@@ -114,8 +114,7 @@ public class ArticleListeActivity extends AppCompatActivity {
                             for (int k = 0; k < videosArray.length(); k++) {
                                 String videoId = videosArray.getJSONObject(k).getString("_id");
                                 String lien = videosArray.getJSONObject(k).getString("lien");
-                                String libelleVideo = lien;
-                                VideosClass video = new VideosClass(videoId, lien, libelleVideo);
+                                VideosClass video = new VideosClass(videoId, lien, libelle);
                                 videos.add(video);
                             }
 

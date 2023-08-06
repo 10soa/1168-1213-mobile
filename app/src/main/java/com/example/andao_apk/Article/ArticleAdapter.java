@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.Multimedia.MultimediaFiche;
+import com.example.andao_apk.Multimedia.Videos.VideosClass;
 import com.example.andao_apk.R;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -61,6 +62,7 @@ public class ArticleAdapter  extends RecyclerView.Adapter<ArticleAdapter.Article
                 articleDetails.putExtra("categorie",list.get(position).getCategorie());
                 articleDetails.putExtra("localisation",list.get(position).getLocalisation());
                 articleDetails.putParcelableArrayListExtra("multimedia", (ArrayList<MultimediaClass>)  list.get(position).getImages());
+                articleDetails.putParcelableArrayListExtra("video", (ArrayList<VideosClass>)  list.get(position).getVideos());
                 context.startActivity(articleDetails);
             }
         });

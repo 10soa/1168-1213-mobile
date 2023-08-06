@@ -2,6 +2,8 @@ package com.example.andao_apk.Multimedia.Videos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.R;
 
 import java.util.List;
@@ -73,6 +76,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideosHold
             videos.setWebChromeClient(new WebChromeClient());
         }
     }
+
 
 
 }

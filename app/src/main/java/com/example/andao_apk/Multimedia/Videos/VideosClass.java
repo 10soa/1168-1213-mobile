@@ -1,6 +1,11 @@
 package com.example.andao_apk.Multimedia.Videos;
 
-public class VideosClass {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class VideosClass implements Parcelable {
 
     String id;
     String lien;
@@ -41,4 +46,35 @@ public class VideosClass {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int i) {
+        dest.writeString(id);
+        dest.writeString(lien);
+        dest.writeString(libelle);
+    }
+
+    protected VideosClass(Parcel in) {
+        id = in.readString();
+        lien = in.readString();
+        libelle = in.readString();
+    }
+
+
+    public static final Parcelable.Creator<VideosClass> CREATOR = new Parcelable.Creator<VideosClass>() {
+        @Override
+        public VideosClass createFromParcel(Parcel in) {
+            return new VideosClass(in);
+        }
+
+        @Override
+        public VideosClass[] newArray(int size) {
+            return new VideosClass[size];
+        }
+    };
 }

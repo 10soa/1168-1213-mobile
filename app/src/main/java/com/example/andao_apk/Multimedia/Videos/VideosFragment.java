@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -48,6 +49,14 @@ public class VideosFragment extends Fragment {
     private Vector<VideosClass> liste;
     private ProgressBar progressBar;
     private RequestQueue requestQueue;
+
+    public VideosFragment(List<VideosClass> list) {
+        // Required empty public constructor
+        this.liste = new Vector<>();
+        for(VideosClass video : list){
+            liste.add(video);
+        }
+    }
 
     public VideosFragment() {
         // Required empty public constructor
@@ -95,7 +104,13 @@ public class VideosFragment extends Fragment {
         recyclerView=view.findViewById(R.id.recyclervideos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        datainitialise(recyclerView);
+        if(liste == null || liste.size() == 0 ){
+            datainitialise(recyclerView);
+        }
+        else{
+            recyclerView.setAdapter(adapter);
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
 
