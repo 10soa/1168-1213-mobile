@@ -19,7 +19,9 @@ public class ArticleListeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_liste);
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         list.add(new ArticleClass("_id","Destination incontournable",R.drawable.destination_1,"lien","Parc national de l'Isalo","Une fenêtre ouverte sur la biodiversité du Sud Malgache","Situé dans le sud-ouest de Madagascar, ce parc national est réputé pour ses formations rocheuses spectaculaires, ses canyons profonds, ses piscines naturelles et sa faune variée.",R.drawable.photo));
         list.add(new ArticleClass("_id","Faunes et Flores",R.drawable.fauneflore,"lien","Parc national de Ranomafana","Ranomafana... ou un écrin de verdure","Un parc tropical luxuriant dans les Hautes Terres, abritant une grande variété de lémuriens, de caméléons et d'oiseaux",R.drawable.photos2jpg));
         list.add(new ArticleClass("_id","Destination incontournable",R.drawable.destination_1,"lien","Parc national de Ranomafana","Ranomafana... ou un écrin de verdure","Un parc tropical luxuriant dans les Hautes Terres, abritant une grande variété de lémuriens, de caméléons et d'oiseaux",R.drawable.photos2jpg));
