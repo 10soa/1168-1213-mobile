@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,14 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndaoAPK"
         tools:targetApi="31">
+
         <activity
             android:name=".Utilisateur.ficheUtilisateur"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SplashScreen.SplashScreen"
@@ -44,6 +43,7 @@
         <activity android:name=".Multimedia.Onglet.OngletActivity" />
         <activity android:name=".Reglages.ThemeActivity" />
         <activity android:name=".Reglages.LanguesActivity" />
+        <activity android:name=".Utilisateur.UserShareActivity" />
 
         <service
             android:name=".Notification.Notification"
