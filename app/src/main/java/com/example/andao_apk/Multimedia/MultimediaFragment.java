@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +13,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.andao_apk.Constante.Constante;
 import com.example.andao_apk.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +46,9 @@ public class MultimediaFragment extends Fragment {
     private String mParam2;
 
     List<MultimediaClass> list;
+
+    private ProgressBar progressBar;
+    private RequestQueue requestQueue;
 
     public MultimediaFragment() {
         // Required empty public constructor
@@ -72,38 +87,61 @@ public class MultimediaFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_multimedia, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        datainitialise();
-        RecyclerView recyclerView=view.findViewById(R.id.recyclermultimedia);
+        progressBar = view.findViewById(R.id.progressBar_photos);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclermultimedia);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        MultimediaAdapter adapter=new MultimediaAdapter(getContext(),list);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setAdapter(adapter);
+        datainitialise(recyclerView);
     }
-    private void datainitialise() {
-        list=new ArrayList<>();
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/pubVV/alu%20261%20-%20458.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230718124115-1.jpg"));
-        list.add(new MultimediaClass("https//vidyVarotra.mg","https://staticvv-c398.kxcdn.com/IMGSITE/image/site/original/20230621125702-1.jpg"));
 
+    private void datainitialise(RecyclerView recyclerView) {
+        list = new ArrayList<>();
+        requestQueue = Volley.newRequestQueue(getContext());
+        String url = Constante.api_url + "Categorie/multimedia/photos/0/180";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int status = jsonResponse.getInt("status");
+                    if (status == 200) {
+                        JSONObject dataObject = jsonResponse.getJSONObject("data");
+                        JSONArray multimediaArray = dataObject.getJSONArray("multimedia");
 
+                        for (int i = 0; i < multimediaArray.length(); i++) {
+                            JSONObject multimediaItem = multimediaArray.getJSONObject(i);
+                            JSONObject articleObject = multimediaItem.getJSONObject("article");
+                            JSONArray imagesArray = articleObject.getJSONArray("images");
+                            for (int j=0;j<imagesArray.length();j++) {
+                                JSONObject imageObject = imagesArray.getJSONObject(j);
+                                MultimediaClass multimedia = new MultimediaClass();
+                                multimedia.setLien(articleObject.getString("libelle"));
+                                multimedia.setImage(imageObject.getString("lien"));
+                                multimedia.setId(imageObject.getString("_id"));
+                                list.add(multimedia);
+                            }
+                        }
+                        System.out.println(list.size());
+                        MultimediaAdapter adapter = new MultimediaAdapter(getContext(), list);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                        recyclerView.setAdapter(adapter);
+
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+        new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+        requestQueue.add(stringRequest);
     }
 }
