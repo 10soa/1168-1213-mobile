@@ -35,7 +35,7 @@ public class NotificationAdapter extends  RecyclerView.Adapter<NotificationAdapt
     public void onBindViewHolder(@NonNull MultimediaViewHolder holder, int position) {
          NotificationClass rep=newsArrayList.get(position);
          holder.imageView.setImageResource(rep.getImage());
-         holder.textView1.setText(rep.getTitre());
+         holder.textView1.setText(rep.getLibelle());
          holder.textView2.setText(rep.getDescription());
     }
 

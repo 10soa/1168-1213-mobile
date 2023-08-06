@@ -1,9 +1,11 @@
 package com.example.andao_apk.Notification_android;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,9 +13,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.andao_apk.Constante.Constante;
 import com.example.andao_apk.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +51,10 @@ public class NotificationFragment extends Fragment {
     private String[] titre;
     private String[] description;
     private RecyclerView recyclerView;
+
+    private RequestQueue requestQueue;
+
+    private ProgressBar progressBar;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -77,49 +97,78 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        datainitialise();
-        recyclerView=view.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-        NotificationAdapter adapter=new NotificationAdapter(getContext(),newsArrayList);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        progressBar = view.findViewById(R.id.progressBar_notif);
+        recyclerView = view.findViewById(R.id.recyclerview);
 
+        progressBar.setVisibility(View.VISIBLE);
+        datainitialise();
     }
 
     private void datainitialise() {
         newsArrayList = new ArrayList<>();
+        requestQueue = Volley.newRequestQueue(getContext());
+        String url = Constante.api_url + "Notification/allNotification";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int status = jsonResponse.getInt("status");
+                    System.out.println(status);
+                    if (status == 200) {
+                        JSONArray dataArray = jsonResponse.getJSONArray("data");
+                        System.out.println(dataArray.length());
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject item = dataArray.getJSONObject(i);
+                            String date = item.getString("date");
+                            NotificationClass liste = new NotificationClass();
+                            liste.setId(item.getString("_id"));
+                            liste.setArticle_id(item.getString("article_id"));
+                            liste.setImage(R.drawable.baseline_notification_add_24);
+                            liste.setDescription(item.getString("description"));
+                            liste.setLibelle(item.getString("libelle"));
+                            liste.setDate(extractDateFromString(date));
+                            System.out.println(liste.getDate() + "/" + liste.getDescription());
+                            newsArrayList.add(liste);
+                        }
 
-        image=new int[]{
-                R.drawable.baseline_notification_add_24,
-                R.drawable.baseline_notification_add_24,
-                R.drawable.baseline_notification_add_24,
-                R.drawable.baseline_notification_add_24,
-                R.drawable.baseline_notification_add_24,
-                R.drawable.baseline_notification_add_24,
-        };
+                        // Une fois les données récupérées, créez le RecyclerView et l'adaptateur
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        recyclerView.setHasFixedSize(true);
+                        NotificationAdapter adapter = new NotificationAdapter(getContext(), newsArrayList);
+                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
 
-        titre=new String[]{
-                getString(R.string.title_notification),
-                getString(R.string.title_notification),
-                getString(R.string.title_notification),
-                getString(R.string.title_notification),
-                getString(R.string.title_notification),
-                getString(R.string.title_notification),
-        };
+                        // Masquer la barre de progression
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("JSONN ", error.toString());
+                        // En cas d'erreur, masquer la barre de progression également
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
+        requestQueue.add(stringRequest);
+    }
 
-        description=new String[]{
-                getString(R.string.content_notification),
-                getString(R.string.content_notification),
-                getString(R.string.content_notification),
-                getString(R.string.content_notification),
-                getString(R.string.content_notification),
-                getString(R.string.content_notification),
-        };
 
-        for(int i=0;i<description.length;i++){
-            NotificationClass multimedia=new NotificationClass(image[i],titre[i],description[i]);
-            newsArrayList.add(multimedia);
+    private Date extractDateFromString(String dateString) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = inputFormat.parse(dateString);
+            String formattedDate = outputFormat.format(date);
+            return outputFormat.parse(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
