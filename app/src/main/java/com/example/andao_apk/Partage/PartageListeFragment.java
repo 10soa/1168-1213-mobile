@@ -114,8 +114,12 @@ public class PartageListeFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), UserShareActivity.class);
-                startActivity(intent);
+                if(1>2){
+                    System.out.println("Login tsy maintsy atao");
+                }else{
+                    Intent intent = new Intent(getContext(), UserShareActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

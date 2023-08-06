@@ -12,6 +12,7 @@
     import android.view.View;
     import android.widget.Button;
     import android.widget.ImageView;
+    import android.widget.ProgressBar;
     import android.widget.Toast;
 
     import androidx.annotation.NonNull;
@@ -20,6 +21,15 @@
     import androidx.core.app.ActivityCompat;
     import androidx.core.content.ContextCompat;
 
+    import com.android.volley.Request;
+    import com.android.volley.RequestQueue;
+    import com.android.volley.Response;
+    import com.android.volley.VolleyError;
+    import com.android.volley.toolbox.JsonObjectRequest;
+    import com.android.volley.toolbox.Volley;
+    import com.example.andao_apk.Constante.Constante;
+    import com.example.andao_apk.MainActivity;
+    import com.example.andao_apk.Multimedia.Onglet.OngletActivity;
     import com.example.andao_apk.R;
     import com.google.android.gms.tasks.OnCompleteListener;
     import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +45,9 @@
     import com.google.firebase.storage.OnProgressListener;
     import com.google.firebase.storage.StorageReference;
     import com.google.firebase.storage.UploadTask;
+
+    import org.json.JSONException;
+    import org.json.JSONObject;
 
     import java.io.File;
     import java.io.FileOutputStream;
@@ -58,6 +71,11 @@
         private String noteValue;
         private String descriptionValue;
         private String libelleValue;
+
+        private ProgressBar progressBar;
+
+        private String sessionUtilisateur="64c6748bef6335afe586e7c2";
+        private RequestQueue requestQueue;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -69,11 +87,6 @@
             FirebaseApp.initializeApp(UserShareActivity.this);
             storageReference=FirebaseStorage.getInstance().getReference();
 
-
-            TextInputEditText libelleEditText = findViewById(R.id.share_libelle);
-            TextInputEditText descriptionEditText = findViewById(R.id.share_description);
-            TextInputEditText noteEditText = findViewById(R.id.share_note);
-            TextInputEditText localisationEditText = findViewById(R.id.share_localisation);
 
             Button publierButton = findViewById(R.id.publier_bouton);
 
@@ -95,11 +108,8 @@
             publierButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    libelleValue = libelleEditText.getText().toString();
-                    descriptionValue = descriptionEditText.getText().toString();
-                    noteValue = noteEditText.getText().toString();
-                    localisationValue = localisationEditText.getText().toString();
                     signInAnonymously();
+                    System.out.println(urlImage);
                 }
             });
 
@@ -166,8 +176,19 @@
                             @Override
                             public void onSuccess(Uri downloadUri) {
                                 urlImage= downloadUri.toString();
+                                TextInputEditText libelleEditText = findViewById(R.id.share_libelle);
+                                TextInputEditText descriptionEditText = findViewById(R.id.share_description);
+                                TextInputEditText noteEditText = findViewById(R.id.share_note);
+                                TextInputEditText localisationEditText = findViewById(R.id.share_localisation);
+                                libelleValue = libelleEditText.getText().toString();
+                                descriptionValue = descriptionEditText.getText().toString();
+                                noteValue = noteEditText.getText().toString();
+                                localisationValue = localisationEditText.getText().toString();
                                 Toast.makeText(UserShareActivity.this, "Image upload successfully", Toast.LENGTH_SHORT).show();
-                                Log.d("URLLLL",urlImage);
+                                postData(libelleValue,descriptionValue,localisationValue,Integer.valueOf(noteValue),urlImage);
+                                Intent intent = new Intent(UserShareActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                         });
                     }
@@ -191,19 +212,49 @@
 
 
         private void signInAnonymously() {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously()
-        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(UserShareActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                    uploadImage();
-                } else {
-                    Toast.makeText(UserShareActivity.this, "Échec de la connexion anonyme", Toast.LENGTH_SHORT).show();
-                }
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            mAuth.signInAnonymously()
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(UserShareActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                                uploadImage();
+                            } else {
+                                Toast.makeText(UserShareActivity.this, "Échec de la connexion anonyme", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+
+        private void postData(String lib,String desc,String loc,int note,String img) {
+            requestQueue = Volley.newRequestQueue(this);
+            JSONObject body = new JSONObject();
+            try {
+                body.put("libelle", lib);
+                body.put("description", desc);
+                body.put("localisation", loc);
+                body.put("note", note);
+                body.put("image", img);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return;
             }
-        });
+            String url = Constante.api_url +"Utilisateur/utilisateurs/"+sessionUtilisateur;
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, body,
+            new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    // Traitement de la réponse en cas de succès
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            requestQueue.add(jsonObjectRequest);
         }
 
     }
