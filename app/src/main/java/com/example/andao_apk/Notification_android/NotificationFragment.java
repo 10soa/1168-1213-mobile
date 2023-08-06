@@ -1,7 +1,6 @@
 package com.example.andao_apk.Notification_android;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +98,6 @@ public class NotificationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         progressBar = view.findViewById(R.id.progressBar_notif);
         recyclerView = view.findViewById(R.id.recyclerview);
-
         progressBar.setVisibility(View.VISIBLE);
         datainitialise();
     }
@@ -114,7 +112,6 @@ public class NotificationFragment extends Fragment {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     int status = jsonResponse.getInt("status");
-                    System.out.println(status);
                     if (status == 200) {
                         JSONArray dataArray = jsonResponse.getJSONArray("data");
                         System.out.println(dataArray.length());
@@ -128,18 +125,13 @@ public class NotificationFragment extends Fragment {
                             liste.setDescription(item.getString("description"));
                             liste.setLibelle(item.getString("libelle"));
                             liste.setDate(extractDateFromString(date));
-                            System.out.println(liste.getDate() + "/" + liste.getDescription());
                             newsArrayList.add(liste);
                         }
-
-                        // Une fois les données récupérées, créez le RecyclerView et l'adaptateur
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                         recyclerView.setHasFixedSize(true);
                         NotificationAdapter adapter = new NotificationAdapter(getContext(), newsArrayList);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-
-                        // Masquer la barre de progression
                         progressBar.setVisibility(View.GONE);
                     }
                 } catch (JSONException e) {
@@ -147,25 +139,23 @@ public class NotificationFragment extends Fragment {
                 }
             }
         },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("JSONN ", error.toString());
-                        // En cas d'erreur, masquer la barre de progression également
-                        progressBar.setVisibility(View.GONE);
-                    }
-                });
+        new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
         requestQueue.add(stringRequest);
     }
 
 
-    private Date extractDateFromString(String dateString) {
+    private String extractDateFromString(String dateString) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
         try {
             Date date = inputFormat.parse(dateString);
             String formattedDate = outputFormat.format(date);
-            return outputFormat.parse(formattedDate);
+            return formattedDate;
         } catch (ParseException e) {
             e.printStackTrace();
             return null;

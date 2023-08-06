@@ -9,6 +9,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +36,8 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideosHold
     @Override
     public void onBindViewHolder(@NonNull VideosAdapter.VideosHolder holder, int position) {
         holder.videos.loadData(liste.get(position).getLien(),"text/html","utf-8");
-        holder.bouton.setOnClickListener(new View.OnClickListener() {
+        holder.bouton.setText(liste.get(position).getLibelle());
+        holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,FullScreen.class);
@@ -56,14 +59,17 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideosHold
 
     public class VideosHolder extends RecyclerView.ViewHolder{
         WebView videos;
-        Button bouton;
+
+        ImageView image;
+        TextView bouton;
 
         public VideosHolder(View view){
             super(view);
-            bouton=(Button)view.findViewById(R.id.videos_fullscreen);
+            bouton=(TextView) view.findViewById(R.id.videos_fullscreen);
             videos=(WebView) view.findViewById(R.id.cardvideos);
             videos.getSettings().setJavaScriptEnabled(true);
             videos.setWebViewClient(new WebViewClient());
+            image=(ImageView)view.findViewById(R.id.icon_image_multimedia);
             videos.setWebChromeClient(new WebChromeClient());
         }
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,10 +14,23 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.andao_apk.Constante.Constante;
 import com.example.andao_apk.R;
 import com.example.andao_apk.Utilisateur.UserShareActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +52,9 @@ public class PartageListeFragment extends Fragment {
     private String mParam2;
 
     List<PartageClass> list;
+
+    private ProgressBar progressBar;
+    private RequestQueue requestQueue;
 
 
     public PartageListeFragment() {
@@ -81,28 +98,99 @@ public class PartageListeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        datainitialise();
-        RecyclerView recyclerView=view.findViewById(R.id.recyclerlistepartage);
+        progressBar = view.findViewById(R.id.progressBar_usershare);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerlistepartage);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        PartageAdapter adapter=new PartageAdapter(getContext(),list);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
+
+        list = new ArrayList<>();
+
+        datainitialise(recyclerView);
+
+        PartageAdapter adapter = new PartageAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), UserShareActivity.class);
-                startActivity(intent);
+                if(1>2){
+                    System.out.println("Login tsy maintsy atao");
+                }else{
+                    Intent intent = new Intent(getContext(), UserShareActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    private void datainitialise() {
-        list=new ArrayList<>();
-        list.add(new PartageClass("id","RANDRIA","https://th.bing.com/th/id/OIP.lnPR__CRc0KmsAvI0G9a3gHaFj?w=260&h=195&c=7&r=0&o=5&dpr=1.3&pid=1.7","Vacance à Morondava",2,"Soa",new Date(2023,8,4),0));
-        list.add(new PartageClass("id","RAKOTO","https://th.bing.com/th/id/OIP.99Jwf-TNa81XDL8IaKRDsQHaE7?w=277&h=184&c=7&r=0&o=5&dpr=1.3&pid=1.7","Vacance à Foulpointe",2,"Nick",new Date(2023,1,23),1));
-        list.add(new PartageClass("id","RABARY","https://th.bing.com/th/id/OIP.GWm8HSPU9grj1caYQySbuAHaEf?w=297&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7","Vacance à Majunga",2,"Mathieu",new Date(2023,2,23),1));
+
+    private void datainitialise(RecyclerView recyclerView) {
+        list = new ArrayList<>();
+        requestQueue = Volley.newRequestQueue(getContext());
+        String url = Constante.api_url + "Utilisateur/recherchePartage/0/180";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int status = jsonResponse.getInt("status");
+                    if (status == 200) {
+                        JSONObject dataObject = jsonResponse.getJSONObject("data");
+                        JSONArray partageArray = dataObject.getJSONArray("partage");
+
+                        for (int i = 0; i < partageArray.length(); i++) {
+                            JSONObject partageItem = partageArray.getJSONObject(i);
+                            JSONObject partageObject = partageItem.getJSONObject("partage");
+
+                            String description = partageObject.getString("description");
+                            String libelle = partageObject.getString("libelle");
+                            String image = partageObject.getString("image");
+                            int note = partageObject.getInt("note");
+
+                            String localisation = partageObject.getString("localisation");
+                            String datePublication = partageObject.getString("date_publication");
+                            String id = partageObject.getString("_id");
+
+                            PartageClass partageClass = new PartageClass();
+                            partageClass.setNom(partageItem.getString("nom"));
+                            partageClass.setSexe(partageItem.getInt("sexe"));
+                            partageClass.setPrenom(partageItem.getString("prenom"));
+                            partageClass.setDescription(description);
+                            partageClass.setLibelle(libelle);
+                            partageClass.setImage(image);
+                            partageClass.setNote(note);
+                            partageClass.setLocalisation(localisation);
+                            String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
+                            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+                            try {
+                                Date date = dateFormat.parse(datePublication);
+                                partageClass.setDatePublication(date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            partageClass.set_id(id);
+                            list.add(partageClass);
+                        }
+                        System.out.println(list.size());
+                        PartageAdapter adapter = new PartageAdapter(getContext(), list);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
+                        recyclerView.setAdapter(adapter);
+
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+        new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+        requestQueue.add(stringRequest);
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.andao_apk.Constante.Constante;
 import com.example.andao_apk.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Vector;
 
@@ -33,7 +45,9 @@ public class VideosFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    private Vector<VideosClass> liste=new Vector<>();
+    private Vector<VideosClass> liste;
+    private ProgressBar progressBar;
+    private RequestQueue requestQueue;
 
     public VideosFragment() {
         // Required empty public constructor
@@ -76,20 +90,57 @@ public class VideosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        datainitialise();
+        progressBar = view.findViewById(R.id.progressBar_videos);
         VideosAdapter adapter=new VideosAdapter(liste,getContext());
         recyclerView=view.findViewById(R.id.recyclervideos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
+        datainitialise(recyclerView);
     }
 
-    private void datainitialise() {
-        liste.add(new VideosClass("<iframe width=\"400\" height=\"290\" src=\"https://www.youtube.com/embed/kt2D7xl06mk\" title=\"VIDEO 10s\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"));
-        liste.add(new VideosClass("<iframe width=\"400\" height=\"290\" src=\"https://www.youtube.com/embed/6dcsXzngGhU\" title=\"LA MARTINIQUE : 10 CHOSES QUI LA RENDENT UNIQUE !\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"));
-        liste.add(new VideosClass("<iframe width=\"400\" height=\"290\" src=\"https://www.youtube.com/embed/kt2D7xl06mk\" title=\"VIDEO 10s\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"));
-        liste.add(new VideosClass("<iframe width=\"400\" height=\"290\" src=\"https://www.youtube.com/embed/6dcsXzngGhU\" title=\"LA MARTINIQUE : 10 CHOSES QUI LA RENDENT UNIQUE !\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"));
-        liste.add(new VideosClass("<iframe width=\"400\" height=\"290\" src=\"https://www.youtube.com/embed/kt2D7xl06mk\" title=\"VIDEO 10s\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"));
-        liste.add(new VideosClass("<iframe width=\"400\" height=\"290\" src=\"https://www.youtube.com/embed/6dcsXzngGhU\" title=\"LA MARTINIQUE : 10 CHOSES QUI LA RENDENT UNIQUE !\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"));
+
+    private void datainitialise(RecyclerView recyclerView) {
+        liste = new Vector<>();
+        requestQueue = Volley.newRequestQueue(getContext());
+        String url = Constante.api_url + "Categorie/multimedia/videos/0/180";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int status = jsonResponse.getInt("status");
+                    if (status == 200) {
+                        JSONObject dataObject = jsonResponse.getJSONObject("data");
+                        JSONArray multimediaArray = dataObject.getJSONArray("multimedia");
+                        for (int i = 0; i < multimediaArray.length(); i++) {
+                            JSONObject multimediaItem = multimediaArray.getJSONObject(i);
+                            JSONObject articleObject = multimediaItem.getJSONObject("article");
+                            JSONArray imagesArray = articleObject.getJSONArray("videos");
+                            for (int j=0;j<imagesArray.length();j++) {
+                                JSONObject imageObject = imagesArray.getJSONObject(j);
+                                VideosClass multimedia = new VideosClass();
+                                multimedia.setLibelle(articleObject.getString("libelle"));
+                                multimedia.setLien(imageObject.getString("lien"));
+                                liste.add(multimedia);
+                            }
+                        }
+                        System.out.println(liste.size());
+                        VideosAdapter adapter = new VideosAdapter(liste,getContext());
+                        recyclerView.setAdapter(adapter);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+        new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+        requestQueue.add(stringRequest);
     }
+
 }

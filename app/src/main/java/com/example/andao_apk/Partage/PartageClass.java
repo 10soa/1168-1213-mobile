@@ -63,6 +63,8 @@ public class PartageClass {
         this.sexe = sexe;
     }
 
+    public PartageClass(){}
+
     public String get_id() {
         return _id;
     }

@@ -13,13 +13,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.andao_apk.Article.Onglet.FicheTabArticleAdapter;
 import com.example.andao_apk.Multimedia.MultimediaClass;
+import com.example.andao_apk.Multimedia.Videos.VideosClass;
 import com.example.andao_apk.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +42,7 @@ public class ArticleActivity extends AppCompatActivity {
     private TextView libellev;
     private TextView catv;
     private TextView court_descv;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,13 @@ public class ArticleActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+        back=(ImageView)findViewById(R.id.liste_article_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
        articleImagesViewPager =findViewById(R.id.article_images_viewpager);
         viewpagerIndicator = findViewById(R.id.article_tablayout);
         addToFavoris = findViewById(R.id.add_to_favoris);
@@ -60,6 +73,7 @@ public class ArticleActivity extends AppCompatActivity {
         String localisation=intent.getExtras().getString("localisation");
         String site=intent.getExtras().getString("site");
         List<MultimediaClass> multimediaList = intent.getParcelableArrayListExtra("multimedia");
+        List<VideosClass> videoList = intent.getParcelableArrayListExtra("video");
         libellev = findViewById(R.id.article_fiche_libelle);
         catv = findViewById(R.id.categorie_article_fiche);
         court_descv = findViewById(R.id.fiche_article_court_description);
@@ -67,6 +81,7 @@ public class ArticleActivity extends AppCompatActivity {
         catv.setText(categorie);
         court_descv.setText(court_desc);
         ArticleClass a = new ArticleClass();
+        a.setVideos(videoList);
         a.setDescription(description);
         a.setSite(site);
         System.out.println("localisation == "+ localisation);

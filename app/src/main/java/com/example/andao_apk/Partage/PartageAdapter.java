@@ -38,7 +38,7 @@ public class PartageAdapter extends RecyclerView.Adapter<PartageAdapter.PartageV
     @Override
     public void onBindViewHolder(@NonNull PartageAdapter.PartageViewHolder holder, int position) {
         holder.libelle.setText(list.get(position).getNom() + " "+ list.get(position).getPrenom());
-        holder.description.setText(list.get(position).getLibelle());
+        holder.description.setText(list.get(position).getLibelle()+" : "+list.get(position).getDescription());
         holder.categorie.setText(list.get(position).calculateTimeAgo());
         holder.imageCategorie.setImageResource(list.get(position).getSexe() == 0 ? R.drawable.femme : R.drawable.homme);
       //  holder.image.setImageBitmap(list.get(position).base64decoded());
