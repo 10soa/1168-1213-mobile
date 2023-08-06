@@ -5,11 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Article.ArticleListeActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerlistearticle"
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="100dp"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AndaoAPK"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/Theme.AndaoAPK">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:id="@+id/liste_article_back"
+                android:contentDescription="@string/app_name"
+                android:minWidth="48dp"
+                android:src="@drawable/baseline_arrow_back_ios_24" />
+
+
+            <EditText
+                android:id="@+id/search_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:backgroundTintMode="@color/white"
+                android:layout_marginHorizontal="40dp"
+                android:drawablePadding="10dp"
+                android:backgroundTint="@color/white"
+                android:drawableRight="@drawable/icon_search"
+                android:textColorHint="@color/white"
+                android:inputType="textPersonName"
+                android:hint="Recherchez un article" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/titre_liste_article"
+            android:layout_marginTop="20dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerlistearticle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="100dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

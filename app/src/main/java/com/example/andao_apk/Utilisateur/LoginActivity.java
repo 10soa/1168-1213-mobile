@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         email = findViewById(R.id.email_login);
-        mdp = findViewById(R.id.mdp_login);
+        mdp = findViewById(R.id.search);
         login = findViewById(R.id.do_login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override

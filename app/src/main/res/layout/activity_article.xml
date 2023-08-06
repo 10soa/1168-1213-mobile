@@ -24,7 +24,7 @@
                 android:layout_height="24dp"
                 android:adjustViewBounds="true"
                 android:clickable="true"
-                android:id="@+id/fiche_article_back"
+                android:id="@+id/liste_article_back"
                 android:contentDescription="@string/app_name"
                 android:minWidth="48dp"
                 android:src="@drawable/baseline_arrow_back_ios_24" />

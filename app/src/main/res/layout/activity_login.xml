@@ -107,7 +107,7 @@
                             android:textColorHighlight="@color/design_default_color_primary_dark"
                             android:drawableLeft="@drawable/baseline_person_24"/>
                         <EditText  android:layout_width="match_parent"
-                            android:id="@+id/mdp_login"
+                            android:id="@+id/search"
                             android:layout_height="50dp"
                             android:drawablePadding="8dp"
                             android:hint="Mot de passe"
