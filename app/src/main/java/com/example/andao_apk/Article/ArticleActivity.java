@@ -43,7 +43,7 @@ public class ArticleActivity extends AppCompatActivity {
         viewpagerIndicator = findViewById(R.id.article_tablayout);
         addToFavoris = findViewById(R.id.add_to_favoris);
        articleViewPager = findViewById(R.id.view_pager_fiche_2);
-       articleViewPagerIndicator = findViewById(R.id.article_tablayout);
+       articleViewPagerIndicator = findViewById(R.id.tabLayout_article);
         List<String> productImages = new ArrayList<>();
         productImages.add("https://th.bing.com/th?id=OIP.FIprt61j-IpnTzzgRKSieQHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2");
         productImages.add("https://th.bing.com/th/id/R.bade2ed85606117205dbdcdb34cef320?rik=w4pA4dV5r%2bfzQQ&pid=ImgRaw&r=0");
@@ -69,7 +69,7 @@ public class ArticleActivity extends AppCompatActivity {
             }
         });
         articleViewPager.setAdapter(new FicheTabArticleAdapter(this));
-         viewpagerIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        articleViewPagerIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 articleViewPager.setCurrentItem(tab.getPosition());
@@ -90,7 +90,7 @@ public class ArticleActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                viewpagerIndicator.getTabAt(position).select();
+                articleViewPagerIndicator.getTabAt(position).select();
             }
         });
     }
