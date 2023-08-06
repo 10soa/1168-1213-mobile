@@ -99,17 +99,12 @@ public class ArticleListeActivity extends AppCompatActivity {
                             String autres = articleObject.getString("autres");
                             String court_description = articleObject.getString("court_description");
                             String image = lienCat;
-                            System.out.println("festival == "+ R.drawable.festival);
-                            System.out.println("faune et flore == "+ R.drawable.fauneflore);
-                            System.out.println("culture == "+ R.drawable.culture);
-                            System.out.println("hotel == "+ R.drawable.hotel_activite);
-                            System.out.println("gastro == "+ R.drawable.gastronomie);
                             // Extraire les données des images
                             List<MultimediaClass> images = new ArrayList<>();
                             JSONArray imagesArray = articleObject.getJSONArray("images");
                             for (int j = 0; j < imagesArray.length(); j++) {
                                 String lien = imagesArray.getJSONObject(j).getString("lien");
-                                String imageId = imagesArray.getJSONObject(j).getString("_id");
+                                String imageId = lienCat;
                                 MultimediaClass multimedia = new MultimediaClass(lien, imageId, image);
                                 images.add(multimedia);
                             }
@@ -119,7 +114,7 @@ public class ArticleListeActivity extends AppCompatActivity {
                             for (int k = 0; k < videosArray.length(); k++) {
                                 String videoId = videosArray.getJSONObject(k).getString("_id");
                                 String lien = videosArray.getJSONObject(k).getString("lien");
-                                String libelleVideo = libelle;
+                                String libelleVideo = lien;
                                 VideosClass video = new VideosClass(videoId, lien, libelleVideo);
                                 videos.add(video);
                             }

@@ -1,26 +1,10 @@
 package com.example.andao_apk.Article;
 
-import android.content.Context;
-
-import com.android.volley.Request;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.RequestFuture;
-import com.android.volley.toolbox.Volley;
-import com.example.andao_apk.Constante.Constante;
 import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.Multimedia.Videos.VideosClass;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-public class ArticleClass {
+public class ArticleClass{
     private String _id;
 
     private int imageA;
@@ -205,5 +189,4 @@ public class ArticleClass {
     }
 
     public ArticleClass(){}
-
 }

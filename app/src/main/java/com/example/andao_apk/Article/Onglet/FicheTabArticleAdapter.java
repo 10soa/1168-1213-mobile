@@ -7,13 +7,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.andao_apk.Article.ArticleClass;
 import com.example.andao_apk.Multimedia.MultimediaFragment;
 import com.example.andao_apk.Multimedia.Videos.VideosFragment;
 
 public class FicheTabArticleAdapter extends FragmentStateAdapter {
-
-    public FicheTabArticleAdapter(@NonNull FragmentActivity fragmentActivity) {
+    private ArticleClass articleClass;
+    public FicheTabArticleAdapter(@NonNull FragmentActivity fragmentActivity, ArticleClass a) {
         super(fragmentActivity);
+        this.articleClass = a;
     }
 
     @NonNull
@@ -21,11 +23,11 @@ public class FicheTabArticleAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0 :
-                return new DescriptionArticleFragment();
+                return new DescriptionArticleFragment(articleClass.getSite(),articleClass.getDescription(),articleClass.getLocalisation());
             case 1 :
                 return new VideosFragment();
             default:
-                return new DescriptionArticleFragment();
+                return new DescriptionArticleFragment(articleClass.getSite(),articleClass.getDescription(),articleClass.getLocalisation());
         }
     }
 

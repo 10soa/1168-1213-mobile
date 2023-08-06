@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.Multimedia.MultimediaFiche;
 import com.example.andao_apk.R;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleAdapter  extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>{
@@ -52,6 +54,13 @@ public class ArticleAdapter  extends RecyclerView.Adapter<ArticleAdapter.Article
             @Override
             public void onClick(View view) {
                 Intent articleDetails = new Intent(context,ArticleActivity.class);
+                articleDetails.putExtra("description",list.get(position).getDescription());
+                articleDetails.putExtra("libelle",list.get(position).getLibelle());
+                articleDetails.putExtra("site",list.get(position).getSite());
+                articleDetails.putExtra("court_description",list.get(position).getCourt_description());
+                articleDetails.putExtra("categorie",list.get(position).getCategorie());
+                articleDetails.putExtra("localisation",list.get(position).getLocalisation());
+                articleDetails.putParcelableArrayListExtra("multimedia", (ArrayList<MultimediaClass>)  list.get(position).getImages());
                 context.startActivity(articleDetails);
             }
         });

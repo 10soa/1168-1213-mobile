@@ -50,20 +50,19 @@
                 android:id="@+id/fiche_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="L’Avenue des Baobabs, ou Allée des Baobabs, est un groupe important de baobabs de Grandidier (Adansonia grandidieri) bordant la route non pavée n ° 8 entre Morondava et Belon’i Tsiribihina dans la région de Menabe à l’ouest de Madagascar. Son paysage saisissant attire des voyageurs du monde entier, ce qui en fait l’un des endroits les plus visités de la région. Il a été un centre d’efforts locaux de conservation et a obtenu le statut de protection temporaire en juillet 2007 par le ministère de l’Environnement, des Eaux et des Forêts – une étape vers la transformation en premier monument naturel de Madagascar."
                 android:textSize="15sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="30dp"
@@ -81,21 +80,19 @@
                     android:textColor="@color/blue_black_400"
                     android:textSize="22sp"
                     android:textStyle="bold" />
-
+        </LinearLayout>
                 <TextView
                     android:id="@+id/fiche_localisation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:text="Morondava"
                     android:textSize="18sp" />
-            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/imagesite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -119,15 +116,17 @@
                     android:textColor="@color/blue_black_400"
                     android:textSize="22sp"
                     android:textStyle="bold" />
+            </LinearLayout>
 
                 <TextView
                     android:id="@+id/fiche_site"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="https://www.baobab.com"
                     android:textSize="18sp" />
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

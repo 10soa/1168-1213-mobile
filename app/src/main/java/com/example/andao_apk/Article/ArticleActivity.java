@@ -6,13 +6,16 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.andao_apk.Article.Onglet.FicheTabArticleAdapter;
+import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -31,6 +34,10 @@ public class ArticleActivity extends AppCompatActivity {
     private ViewPager2 articleViewPager;
     private TabLayout articleViewPagerIndicator;
 
+    private TextView libellev;
+    private TextView catv;
+    private TextView court_descv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("Salut ny fianakams");
@@ -44,11 +51,28 @@ public class ArticleActivity extends AppCompatActivity {
         addToFavoris = findViewById(R.id.add_to_favoris);
        articleViewPager = findViewById(R.id.view_pager_fiche_2);
        articleViewPagerIndicator = findViewById(R.id.tabLayout_article);
-        List<String> productImages = new ArrayList<>();
-        productImages.add("https://th.bing.com/th?id=OIP.FIprt61j-IpnTzzgRKSieQHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2");
-        productImages.add("https://th.bing.com/th/id/R.bade2ed85606117205dbdcdb34cef320?rik=w4pA4dV5r%2bfzQQ&pid=ImgRaw&r=0");
-        productImages.add("https://th.bing.com/th/id/OIP.Yap99dz975BymlBjYkTKKQHaE8?pid=ImgDet&rs=1");
-        ArticleImagesAdapter articleImagesAdapter = new ArticleImagesAdapter(productImages);
+
+        Intent intent=getIntent();
+        String libelle=intent.getExtras().getString("libelle");
+        String categorie=intent.getExtras().getString("categorie");
+        String court_desc=intent.getExtras().getString("court_description");
+        String description=intent.getExtras().getString("description");
+        String localisation=intent.getExtras().getString("localisation");
+        String site=intent.getExtras().getString("site");
+        List<MultimediaClass> multimediaList = intent.getParcelableArrayListExtra("multimedia");
+        libellev = findViewById(R.id.article_fiche_libelle);
+        catv = findViewById(R.id.categorie_article_fiche);
+        court_descv = findViewById(R.id.fiche_article_court_description);
+        libellev.setText(libelle);
+        catv.setText(categorie);
+        court_descv.setText(court_desc);
+        ArticleClass a = new ArticleClass();
+        a.setDescription(description);
+        a.setSite(site);
+        System.out.println("localisation == "+ localisation);
+        System.out.println("multi len == "+ multimediaList.size());
+        a.setLocalisation(localisation);
+        ArticleImagesAdapter articleImagesAdapter = new ArticleImagesAdapter(multimediaList);
         articleImagesViewPager.setAdapter(articleImagesAdapter);
         viewpagerIndicator.setupWithViewPager(articleImagesViewPager,true);
 
@@ -68,7 +92,7 @@ public class ArticleActivity extends AppCompatActivity {
                 }
             }
         });
-        articleViewPager.setAdapter(new FicheTabArticleAdapter(this));
+        articleViewPager.setAdapter(new FicheTabArticleAdapter(this,a));
         articleViewPagerIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

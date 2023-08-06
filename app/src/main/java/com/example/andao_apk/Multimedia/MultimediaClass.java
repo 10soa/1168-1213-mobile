@@ -1,6 +1,11 @@
 package com.example.andao_apk.Multimedia;
 
-public class MultimediaClass {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class MultimediaClass implements Parcelable {
 
     private String lien;
     private String id;
@@ -44,4 +49,35 @@ public class MultimediaClass {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int i) {
+        dest.writeString(id);
+        dest.writeString(lien);
+        dest.writeString(image);
+    }
+
+
+    protected MultimediaClass(Parcel in) {
+        id = in.readString();
+        lien = in.readString();
+        image = in.readString();
+    }
+
+    public static final Creator<MultimediaClass> CREATOR = new Creator<MultimediaClass>() {
+        @Override
+        public MultimediaClass createFromParcel(Parcel in) {
+            return new MultimediaClass(in);
+        }
+
+        @Override
+        public MultimediaClass[] newArray(int size) {
+            return new MultimediaClass[size];
+        }
+    };
 }

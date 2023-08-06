@@ -9,15 +9,16 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.andao_apk.Multimedia.MultimediaClass;
 import com.example.andao_apk.R;
 
 import java.util.List;
 
 public class ArticleImagesAdapter extends PagerAdapter {
 
-    private List<String> images;
+    private List<MultimediaClass> images;
 
-    public ArticleImagesAdapter(List<String> images) {
+    public ArticleImagesAdapter(List<MultimediaClass> images) {
         this.images = images;
     }
 
@@ -26,8 +27,8 @@ public class ArticleImagesAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position){
         ImageView articleImage = new ImageView(container.getContext());
         Glide.with(container.getContext())
-                .load(images.get(position))
-                .apply(new RequestOptions().placeholder(R.drawable.destination)) // Image de remplacement en cas de chargement ou d'erreur
+                .load(images.get(position).getLien())
+                .apply(new RequestOptions().placeholder(Integer.valueOf(images.get(position).getId()))) // Image de remplacement en cas de chargement ou d'erreur
                 .into(articleImage);
         container.addView(articleImage,0);
         return articleImage;

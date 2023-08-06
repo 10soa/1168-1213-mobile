@@ -41,12 +41,16 @@ public class DescriptionArticleFragment extends Fragment {
 
     TextView descriptionv;
     TextView local;
-    TextView descriptionview;
+    TextView siteview;
 
 
-    public DescriptionArticleFragment() {
-        // Required empty public constructor
+    public DescriptionArticleFragment(String site,String description,String localisation) {
+        this.site = site;
+        this.description = description;
+        this.localisation = localisation;
     }
+
+    public DescriptionArticleFragment(){}
 
     /**
      * Use this factory method to create a new instance of
@@ -79,11 +83,19 @@ public class DescriptionArticleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_description_article, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_description_article, container, false);
+        descriptionv = rootView.findViewById(R.id.fiche_description);
+        local = rootView.findViewById(R.id.fiche_localisation);
+        siteview = rootView.findViewById(R.id.fiche_site);
+        siteview.setText(site);
+        descriptionv.setText(description);
+        local.setText(localisation);
+        return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
        /* super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView=view.findViewById(R.id.recyclerlistearticle);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
