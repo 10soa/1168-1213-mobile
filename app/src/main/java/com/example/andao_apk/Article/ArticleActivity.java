@@ -1,22 +1,20 @@
 package com.example.andao_apk.Article;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.andao_apk.Article.Onglet.FicheTabArticleAdapter;
 import com.example.andao_apk.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +29,8 @@ public class ArticleActivity extends AppCompatActivity {
     private ViewPager2 articleViewPager;
     private TabLayout articleViewPagerIndicator;
 
+    private ImageView back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("Salut ny fianakams");
@@ -39,6 +39,13 @@ public class ArticleActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+        back=(ImageView)findViewById(R.id.liste_article_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
        articleImagesViewPager =findViewById(R.id.article_images_viewpager);
         viewpagerIndicator = findViewById(R.id.article_tablayout);
         addToFavoris = findViewById(R.id.add_to_favoris);
