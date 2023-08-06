@@ -15,8 +15,9 @@
         android:theme="@style/Theme.AndaoAPK"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
+            android:name=".Utilisateur.SignUpActivity"
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".Utilisateur.LoginActivity"
             android:exported="false" />
