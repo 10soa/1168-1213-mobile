@@ -12,7 +12,6 @@
     import android.view.View;
     import android.widget.Button;
     import android.widget.ImageView;
-    import android.widget.TextView;
     import android.widget.Toast;
 
     import androidx.annotation.NonNull;
@@ -76,8 +75,6 @@
             TextInputEditText noteEditText = findViewById(R.id.share_note);
             TextInputEditText localisationEditText = findViewById(R.id.share_localisation);
 
-            TextView test=findViewById(R.id.test);
-
             Button publierButton = findViewById(R.id.publier_bouton);
 
             usershareImage = findViewById(R.id.usershare_image);
@@ -103,6 +100,14 @@
                     noteValue = noteEditText.getText().toString();
                     localisationValue = localisationEditText.getText().toString();
                     signInAnonymously();
+                }
+            });
+
+            ImageView imageBack=findViewById(R.id.partage_user_back);
+            imageBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
                 }
             });
         }

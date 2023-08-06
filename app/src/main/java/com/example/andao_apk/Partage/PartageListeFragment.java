@@ -1,6 +1,10 @@
 package com.example.andao_apk.Partage;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,11 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.andao_apk.R;
+import com.example.andao_apk.Utilisateur.UserShareActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,6 +38,7 @@ public class PartageListeFragment extends Fragment {
     private String mParam2;
 
     List<PartageClass> list;
+
 
     public PartageListeFragment() {
         // Required empty public constructor
@@ -85,6 +88,15 @@ public class PartageListeFragment extends Fragment {
         PartageAdapter adapter=new PartageAdapter(getContext(),list);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
         recyclerView.setAdapter(adapter);
+
+        FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UserShareActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void datainitialise() {

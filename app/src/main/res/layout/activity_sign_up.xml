@@ -189,7 +189,6 @@
                                 android:dropDownHeight="800dp"
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/baseline_location_on_24"
-                                android:drawableRight="@drawable/baseline_arrow_drop_down_24"
                                 android:background="@drawable/custom_edittext"
                                 android:drawablePadding="8dp"
                                 android:inputType="none"/>
