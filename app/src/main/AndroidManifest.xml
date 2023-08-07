@@ -32,9 +32,6 @@
             android:name=".Article.ArticleListeActivity"
             android:exported="false" />
         <activity
-            android:name=".Utilisateur.ficheUtilisateur"
-            android:exported="true" />
-        <activity
             android:name=".Article.ArticleActivity"
             android:exported="false" />
         <activity
