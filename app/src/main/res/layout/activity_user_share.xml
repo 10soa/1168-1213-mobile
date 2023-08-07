@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:hint="Libelle"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/icon_profil"
+                app:startIconDrawable="@drawable/libelle"
                 android:layout_margin="6dp"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:hint="Description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/icon_profil"
+                app:startIconDrawable="@drawable/description"
                 android:layout_margin="6dp"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:hint="Note(/5)"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/icon_profil"
+                app:startIconDrawable="@drawable/note"
                 android:layout_margin="6dp"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:hint="Localisation"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/icon_profil"
+                app:startIconDrawable="@drawable/localisation"
                 android:layout_margin="6dp"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText

@@ -27,4 +27,14 @@
     <color name="grey">#D6DADD</color>
     <color name="splash">#bcf1fc</color>
 
+    <color name="c1">#DE4010</color>
+    <color name="c2">#381004</color>
+    <color name="c3">#8C8B8C</color>
+    <color name="c4">#000000</color>
+    <color name="c5">#30E61C</color>
+    <color name="c6">#11520A</color>
+    <color name="c7">#B00C0E</color>
+    <color name="c8">#240203</color>
+    <color name="c9">#9C6C80</color>
+
 </resources>
