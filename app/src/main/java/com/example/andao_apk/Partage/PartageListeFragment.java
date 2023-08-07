@@ -21,7 +21,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.andao_apk.Constante.Constante;
+import com.example.andao_apk.Constante.Session;
 import com.example.andao_apk.R;
+import com.example.andao_apk.Utilisateur.LoginActivity;
 import com.example.andao_apk.Utilisateur.UserShareActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -114,10 +116,16 @@ public class PartageListeFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(1>2){
-                    System.out.println("Login tsy maintsy atao");
-                }else{
+                String session=Session.getInstance().getMyValue();
+                System.out.println("Sess : "+session);
+                if(session!=null && !session.isEmpty()){
+                    System.out.println("Session partage 1 : "+session);
                     Intent intent = new Intent(getContext(), UserShareActivity.class);
+                    startActivity(intent);
+
+                }else{
+                    System.out.println("Session partage 2");
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
             }
