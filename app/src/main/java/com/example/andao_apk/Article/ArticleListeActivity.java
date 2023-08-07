@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,6 +43,8 @@ public class ArticleListeActivity extends AppCompatActivity {
 
     private String motcle;
 
+    private EditText search;
+
     private String idCat;
 
     private ProgressBar progressBar;
@@ -58,8 +64,26 @@ public class ArticleListeActivity extends AppCompatActivity {
                 idCat = intent.getStringExtra("idCat");
             }
         }
+        search = findViewById(R.id.search_article);
         progressBar = findViewById(R.id.progressbar_liste_article);
         progressBar.setVisibility(View.VISIBLE);
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    progressBar = findViewById(R.id.progressbar_liste_article);
+                    progressBar.setVisibility(View.VISIBLE);
+                    String searchText = textView.getText().toString().trim();
+                    if (!searchText.isEmpty()) {
+                        list.clear();
+                        motcle = searchText;
+                        datainitialize();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
         datainitialize();
 
     }
