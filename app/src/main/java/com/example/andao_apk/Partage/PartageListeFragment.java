@@ -147,7 +147,7 @@ public class PartageListeFragment extends Fragment {
                             String libelle = partageObject.getString("libelle");
                             String image = partageObject.getString("image");
                             int note = partageObject.getInt("note");
-
+                            System.out.println("reo ny libelle = "+libelle);
                             String localisation = partageObject.getString("localisation");
                             String datePublication = partageObject.getString("date_publication");
                             String id = partageObject.getString("_id");
