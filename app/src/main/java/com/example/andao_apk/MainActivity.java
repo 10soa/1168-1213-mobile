@@ -14,7 +14,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.andao_apk.Article.ArticleListeActivity;
 import com.example.andao_apk.Constante.Session;
 import com.example.andao_apk.Utilisateur.LoginActivity;
-import com.example.andao_apk.Utilisateur.ficheUtilisateur;
 import com.example.andao_apk.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String session=Session.getInstance().getMyValue();
                 if(session!=null && !session.isEmpty()){
-                    Intent intent = new Intent(MainActivity.this, ficheUtilisateur.class);
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }else{

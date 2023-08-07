@@ -23,7 +23,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.andao_apk.Constante.Constante;
 import com.example.andao_apk.Constante.Session;
-import com.example.andao_apk.MainActivity;
 import com.example.andao_apk.R;
 
 import org.json.JSONArray;
@@ -120,10 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String mdp1I=mdp.getText().toString();
                 String mdp2I=confirm_mdp.getText().toString();
                 getUser(nomI,prenomI,pseudoI,mailI,datenaissanceI,sexeI,paysI,mdp1I);
-                Intent intent = new Intent(SignUpActivity.this, ficheUtilisateur.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+
             }
         });
 
@@ -140,7 +136,11 @@ public class SignUpActivity extends AppCompatActivity {
             body.put("naissance", naissance);
             body.put("pays", pays);
             body.put("mdp",mdp);
-            body.put("sexe", sexe);
+            if(sexe.compareTo("Homme")==0){
+                body.put("sexe", 1);
+            }else{
+                body.put("sexe", 1);
+            }
             body.put("partage", new JSONArray());
             body.put("favoris", new JSONArray());
         } catch (JSONException e) {
@@ -161,6 +161,18 @@ public class SignUpActivity extends AppCompatActivity {
                             editor.apply();
                             String valuesession = sharedPreferences.getString("sessionID", null);
                             Session.getInstance().setMyValue(valuesession);
+
+                            Intent intent = new Intent(SignUpActivity.this, ficheUtilisateur.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("idUser", idUser);
+                            intent.putExtra("nom", dataObject.getString("nom"));
+                            intent.putExtra("prenom", dataObject.getString("prenom"));
+                            intent.putExtra("pseudo", dataObject.getString("pseudo"));
+                            intent.putExtra("naissance", dataObject.getString("naissance"));
+                            intent.putExtra("pays", dataObject.getString("pays"));
+                            intent.putExtra("email", dataObject.getString("email"));
+                            startActivity(intent);
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

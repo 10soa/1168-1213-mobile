@@ -79,9 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Champ Mot de passe obligatoire", Toast.LENGTH_SHORT).show();
                 }else{
                     getUser(email.getText().toString(),mdp.getText().toString());
-                    Intent intent = new Intent(LoginActivity.this,ficheUtilisateur.class);
-                    startActivity(intent);
-                    finish();
                     Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -112,6 +109,16 @@ public class LoginActivity extends AppCompatActivity {
                             editor.apply();
                             String valuesession = sharedPreferences.getString("sessionID", null);
                             Session.getInstance().setMyValue(valuesession);
+                            Intent intent = new Intent(LoginActivity.this,ficheUtilisateur.class);
+                            intent.putExtra("idUser", idUser);
+                            intent.putExtra("nom", dataObject.getString("nom"));
+                            intent.putExtra("prenom", dataObject.getString("prenom"));
+                            intent.putExtra("pseudo", dataObject.getString("pseudo"));
+                            intent.putExtra("naissance", dataObject.getString("naissance"));
+                            intent.putExtra("pays", dataObject.getString("pays"));
+                            intent.putExtra("email", dataObject.getString("email"));
+                            startActivity(intent);
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
