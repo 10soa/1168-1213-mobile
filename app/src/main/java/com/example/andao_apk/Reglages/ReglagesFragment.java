@@ -89,7 +89,6 @@ public class ReglagesFragment extends Fragment {
     private void datainitialise() {
         list=new ArrayList<>();
         list.add(new ReglagesClass(R.drawable.window,"Thèmes","settings"));
-        list.add(new ReglagesClass(R.drawable.langague,"Langues","langues"));
     }
 
 }
